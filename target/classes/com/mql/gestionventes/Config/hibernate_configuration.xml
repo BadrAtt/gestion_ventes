@@ -1,0 +1,28 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+   <session-factory>
+   
+      <property name = "hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
+      <property name = "hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+      
+      <!--Nom de la base de donnes -->
+      <property name = "hibernate.connection.url"> jdbc:mysql://localhost/gestion_ventes</property>
+      <property name = "hibernate.connection.username">root</property>
+      <property name = "hibernate.connection.password"></property>
+      <property name="current_session_context_class">thread</property>
+      <property name="show_sql">true</property>
+      <property name="hibernate.id.new_generator_mappings">false</property>
+      <property name="hibernate.hbm2ddl.auto">create</property>
+      <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+      <property name="hibernate.connection.pool_size">1</property>
+      
+      <!-- mapping -->
+      <mapping class="com.mql.gestionventes.Entity.Article" />
+      <mapping class="com.mql.gestionventes.Entity.Client" />
+      <mapping class="com.mql.gestionventes.Entity.Commande" />
+      <mapping class="com.mql.gestionventes.Entity.Utilisateur"/>
+      
+   </session-factory>
+</hibernate-configuration>

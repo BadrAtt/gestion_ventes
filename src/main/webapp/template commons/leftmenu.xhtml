@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<body>
+	<ui:composition>
+		<!-- BEGIN: Left Aside -->
+			<button class="m-aside-left-close  m-aside-left-close--skin-dark " id="m_aside_left_close_btn">
+				<i class="la la-close"></i>
+			</button>
+			<div id="m_aside_left" class="m-grid__item	m-aside-left  m-aside-left--skin-dark ">
+				<!-- BEGIN: Aside Menu -->
+				<div id="m_ver_menu" class="m-aside-menu  m-aside-menu--skin-dark m-aside-menu--submenu-skin-dark " m-menu-vertical="1" m-menu-scrollable="0"
+				 m-menu-dropdown-timeout="500">
+					<ul class="m-menu__nav ">
+						<li id="menu_dashboard" class="m-menu__item" aria-haspopup="true">
+							<a href="index.xhtml" class="m-menu__link ">
+								<span class="m-menu__item-here"></span>
+								<i class="m-menu__link-icon flaticon-line-graph"></i>
+								<span class="m-menu__link-text">
+									Dashboard
+								</span>
+							</a>
+						</li>
+						<li id="menu_articles"  class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+							<a href="javascript:;" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here"></span>
+								<i class="m-menu__link-icon flaticon-layers"></i>
+								<span class="m-menu__link-text">
+									Articles
+								</span>
+								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							</a>
+							<div class="m-menu__submenu ">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+										<span class="m-menu__link">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Articles
+											</span>
+										</span>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true">
+										<a href="addarticle.xhtml" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Ajouter un Article
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Liste des Articles
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li id="menu_commandes"  class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+							<a href="javascript:;" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here"></span>
+								<i class="m-menu__link-icon flaticon-truck"></i>
+								<span class="m-menu__link-text">
+									Commandes
+								</span>
+								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							</a>
+							<div class="m-menu__submenu ">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+										<span class="m-menu__link">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Commandes
+											</span>
+										</span>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Ajouter une Commande
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Liste des Commandes
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li id="menu_clients" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+							<a href="javascript:;" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here"></span>
+								<i class="m-menu__link-icon flaticon-avatar"></i>
+								<span class="m-menu__link-text">
+									Clients
+								</span>
+								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							</a>
+							<div class="m-menu__submenu ">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+										<span class="m-menu__link">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Gestion des Clients
+											</span>
+										</span>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Ajouter un Client
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Liste des Clients
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li id="menu_users" class="m-menu__item  m-menu__item--submenu" aria-haspopup="true" m-menu-submenu-toggle="hover">
+							<a href="javascript:;" class="m-menu__link m-menu__toggle">
+								<span class="m-menu__item-here"></span>
+								<i class="m-menu__link-icon flaticon-user"></i>
+								<span class="m-menu__link-text">
+									Utilisateurs
+								</span>
+								<i class="m-menu__ver-arrow la la-angle-right"></i>
+							</a>
+							<div class="m-menu__submenu ">
+								<span class="m-menu__arrow"></span>
+								<ul class="m-menu__subnav">
+									<li class="m-menu__item  m-menu__item--parent" aria-haspopup="true">
+										<span class="m-menu__link">
+											<span class="m-menu__item-here"></span>
+											<span class="m-menu__link-text">
+												Utilisateurs
+											</span>
+										</span>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Ajouter un Utilisateur
+											</span>
+										</a>
+									</li>
+									<li class="m-menu__item " aria-haspopup="true" m-menu-link-redirect="1">
+										<a href="#" class="m-menu__link ">
+											<i class="m-menu__link-bullet m-menu__link-bullet--dot">
+												<span></span>
+											</i>
+											<span class="m-menu__link-text">
+												Liste des Utilisateurs
+											</span>
+										</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+					</ul>
+				</div>
+				<!-- END: Aside Menu -->
+			</div>
+			<!-- END: Left Aside -->
+	</ui:composition>
+</body>
+</html>
