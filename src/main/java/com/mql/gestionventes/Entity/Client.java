@@ -1,9 +1,13 @@
 package com.mql.gestionventes.Entity;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -25,6 +29,9 @@ public class Client {
 	
 	@Column(name = "ADRESSE")
 	private String adresse;
+	
+	@OneToMany(mappedBy = "client")
+	private Collection<Commande> commandes = new ArrayList<Commande>();// les commandes d'un client
 	
 	
 	public int getCode() {

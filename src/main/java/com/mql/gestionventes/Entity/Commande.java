@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 
@@ -24,11 +24,11 @@ public class Commande {
 	@Column(name = "ID_COMMANDE")
 	private int code;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "CLIENT_ID")
-	private Client client; // chaque commande est faite pour un client
+	private Client client; // chaque commande est faite pour un client, et plusieurs commandes peut etres faites par un client
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "ARTICLE_ID")
 	private Article articleCmd; //L'article commandé
 	

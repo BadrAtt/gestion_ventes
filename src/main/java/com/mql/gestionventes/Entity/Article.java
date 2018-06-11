@@ -3,7 +3,12 @@ package com.mql.gestionventes.Entity;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
 import javax.persistence.Column;
 
 @Entity
@@ -22,6 +27,9 @@ public class Article {
 	
 	@Column(name = "PRIX")
 	private int prix;
+	
+	@OneToMany(mappedBy = "articleCmd")
+	private Collection<Commande> commandes = new ArrayList<Commande>();// un produit peut etre le sujet de plusieurs commandes
 	
 	
 	public int getCode() {
