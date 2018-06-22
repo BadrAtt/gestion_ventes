@@ -67,14 +67,6 @@
 								<h:inputText id="user_password" styleClass="form-control m-input m-login__form-input--last" pt:type="password" pt:placeholder="Password"
 								 value="#{loginBean.userPassword}"></h:inputText>
 							</div>
-							<div class="row m-login__form-sub">
-								<div class="col m--align-left m-login__form-left">
-									<label class="m-checkbox  m-checkbox--focus">
-										<h:selectBooleanCheckbox id="remember" /> Se souvenir de moi
-										<span></span>
-									</label>
-								</div>
-							</div>
 							<div class="m-login__form-action">
 								<h:commandButton id="m_login_signin_submit" styleClass="btn btn-focus m-btn m-btn--pill m-btn--custom m-btn--air m-login__btn m-login__btn--primary"
 								 action="#{loginBean.loginAction}" value="Connexion">

@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:ui="http://java.sun.com/jsf/facelets"
- 				xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
- 				xmlns:p="http://primefaces.org/ui">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:p="http://primefaces.org/ui">
 <!-- begin::Head -->
 
 <h:head>
@@ -39,16 +36,16 @@
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-	<h:form id="articleForm" prependId="false">
-		<!-- begin:: Page -->
-		<div class="m-grid m-grid--hor m-grid--root m-page">
 
-			<!-- BEGIN: Header -->
-			<ui:insert name="header">
-				<ui:include src="/template commons/header.xhtml" />
-			</ui:insert>
-			<!-- END: Header -->
+	<!-- begin:: Page -->
+	<div class="m-grid m-grid--hor m-grid--root m-page">
 
+		<!-- BEGIN: Header -->
+		<ui:insert name="header">
+			<ui:include src="/template commons/header.xhtml" />
+		</ui:insert>
+		<!-- END: Header -->
+		<h:form id="articleForm" prependId="false">
 			<!-- begin::Body -->
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 				<!-- BEGIN: Left Aside -->
@@ -102,8 +99,8 @@
 												<button type="button" class="close" data-close="alert" aria-label="Close"></button>
 											</div>
 										</div>
-										
-						
+
+
 										<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
 											<div class="m-alert__icon">
 												<i class="la la-warning"></i>
@@ -115,11 +112,11 @@
 												<button type="button" class="close" data-close="alert" aria-label="Close"></button>
 											</div>
 										</div>
-										
+
 										<h:panelGroup rendered="#{ajoutArticle.showSuccess}">
 											<div class="alert alert-success alert-dismissible fade show" role="alert">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-													Vous avez Ajouté cet article avec succès.
+												Vous avez Ajouté cet article avec succès.
 											</div>
 										</h:panelGroup>
 									</div>
@@ -128,10 +125,8 @@
 											Nom *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputText type="text" class="form-control m-input" id="product_name" 
-											pt:placeholder="Entrer le nom" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutArticle.nomArticle}"
-											 autocomplete="off" />
+											<h:inputText type="text" class="form-control m-input" id="product_name" pt:placeholder="Entrer le nom" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutArticle.nomArticle}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
@@ -139,10 +134,9 @@
 											Déescription *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputTextarea class="form-control m-input"  id="product_description" pt:placeholder="Enter la déscription" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutArticle.descriptionArticle}" 
-											 autocomplete="off"/>
-											 <span class="m-form__help">
+											<h:inputTextarea class="form-control m-input" id="product_description" pt:placeholder="Enter la déscription" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutArticle.descriptionArticle}" autocomplete="off" />
+											<span class="m-form__help">
 												Minimum 10 caractères
 											</span>
 										</div>
@@ -153,9 +147,8 @@
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class="m-input-icon m-input-icon--left">
-												<h:inputText type="text" class="form-control m-input"  id="product_price" pt:placeholder="Entrer le prix en DH" pt:data-toggle="m-tooltip"
-												 pt:title="Champ Obligatoire" value="#{ajoutArticle.prixArticle}"
-												 autocomplete="off" />
+												<h:inputText type="text" class="form-control m-input" id="product_price" pt:placeholder="Entrer le prix en DH" pt:data-toggle="m-tooltip"
+												 pt:title="Champ Obligatoire" value="#{ajoutArticle.prixArticle}" autocomplete="off" />
 												<span class="m-input-icon__icon m-input-icon__icon--left">
 													<span>
 														<i class="la la-calculator"></i>
@@ -172,8 +165,8 @@
 									<div class="m-form__actions m-form__actions">
 										<div class="row">
 											<div class="col-lg-9 ml-lg-auto">
-												<h:commandButton type="submit" class="btn btn-success" value="Ajouter" 
-												action="#{ajoutArticle.addArticleAction}" update="@form" render="@form"/>
+												<h:commandButton type="submit" class="btn btn-success" value="Ajouter" action="#{ajoutArticle.addArticleAction}" update="@form"
+												 render="@form" />
 												<a href="index.xhtml" class="btn btn-secondary">Annuler</a>
 											</div>
 										</div>
@@ -193,9 +186,10 @@
 				<ui:include src="/template commons/footer.xhtml" />
 			</ui:insert>
 			<!-- end::Footer -->
-		</div>
-		<!-- end:: Page -->
-	</h:form>
+		</h:form>
+	</div>
+	<!-- end:: Page -->
+
 
 	<!-- begin::Scroll Top -->
 	<div id="m_scroll_top" class="m-scroll-top">
@@ -213,11 +207,11 @@
 	<script type="text/javascript">
 		document.getElementById("menu_articles").classList.add('m-menu__item--active');
 	</script>
-	
+
 	<script>
-		function check(){
-			return jQuery(document).ready(function() {
-			    FormControls.init()
+		function check() {
+			return jQuery(document).ready(function () {
+				FormControls.init()
 			});
 		}
 	</script>

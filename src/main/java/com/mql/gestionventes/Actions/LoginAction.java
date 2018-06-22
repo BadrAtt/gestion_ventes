@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import com.mql.gestionventes.Entity.Utilisateur;
 import com.mql.gestionventes.Factory.ServiceFactory;
 import com.mql.gestionventes.Utils.SessionUtil;
+import com.mql.gestionventes.Utils.StringUtils;
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
@@ -16,8 +17,6 @@ public class LoginAction {
 	private String userName;
 	private String userPassword;
 	private boolean loginSuccess;
-	private String test = "not ok";
-
 	
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
@@ -50,19 +49,9 @@ public class LoginAction {
 	public void setLoginSuccess(boolean loginSuccess) {
 		this.loginSuccess = loginSuccess;
 	}
-	
-	
-	public String getTest() {
-		return test;
-	}
-
-	public void setTest(String test) {
-		this.test = test;
-	}
-
 	public String loginAction() {
 		
-		utilisateur  = ServiceFactory.getUserService().loginUser(userName, userPassword);
+		utilisateur  = ServiceFactory.getUserService().loginUser(userName, StringUtils.sha256(userPassword));
 		if(utilisateur !=null) {
 			
 			//utilisateur existe

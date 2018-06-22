@@ -65,5 +65,8 @@ public class AjoutClientAction {
 			
 			this.addSuccess = true;
 		}
+		else {
+			this.addSuccess = false;
+		}
 	}
 }

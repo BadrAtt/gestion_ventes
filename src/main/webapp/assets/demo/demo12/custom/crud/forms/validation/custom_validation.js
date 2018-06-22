@@ -68,6 +68,32 @@ var FormControls = {
             submitHandler: function(e) {
             	return true;
             }
+        }),
+
+        $("#userForm").validate({
+            rules: {
+            	nom_user: {
+                    required: !0
+                },
+                prenom_user: {
+                    required: !0
+                },
+                email_user: {
+                	required: !0,
+                    email: !0
+                },
+                password_user : {
+                	required: !0
+                }
+            },
+            invalidHandler: function(e, r) {
+                var i = $("#m_form_1_msg");
+                i.removeClass("m--hide").show(), mApp.scrollTo(i, -200)
+                return false;
+            },
+            submitHandler: function(e) {
+            	return true;
+            }
         })
     }
 };

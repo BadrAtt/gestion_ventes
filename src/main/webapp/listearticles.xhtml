@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
- xmlns:f="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:p="http://primefaces.org/ui"
+ xmlns:f="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
  xmlns:b="http://bootsfaces.net/ui">
 <!--  -->
 <!-- begin::Head -->
@@ -88,7 +88,7 @@
 									<ul class="m-portlet__nav">
 										<li class="m-portlet__nav-item">
 											<div class="btn-group m-btn-group" role="group" aria-label="...">
-												<h:commandLink value="Excel" type="button" class="btn btn-secondary">
+												<!--<h:commandLink value="Excel" type="button" class="btn btn-secondary">
 													<p:dataExporter id="dataExporter" type="xls" target="articles_datatable" fileName="liste articles" pageOnly="true" />
 												</h:commandLink>
 												<h:commandLink value="CSV" type="button" class="btn btn-secondary">
@@ -99,7 +99,7 @@
 												</h:commandLink>
 												<h:commandLink value="Print" onclick="printData()" type="button" class="btn btn-secondary">
 
-												</h:commandLink>
+												</h:commandLink>-->
 											</div>
 										</li>
 										<li class="m-portlet__nav-item">
@@ -129,74 +129,50 @@
 									</div>
 								</h:panelGroup>
 								<!--begin: Datatable -->
-								<p:dataTable rows="10" id="articles_datatable" var="article" value="#{listeArticlesAction.listeArticles}" tableStyleClass="table table-striped- table-bordered table-hover table-checkable"
-								 emptyMessage="pas d'article" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-								 rowsPerPageTemplate="10,20,30" rendered="false">
-
-									<p:column headerText="Code" sortBy="#{article.code}">
-										<h:outputText value="#{article.code}" />
-									</p:column>
-
-									<p:column headerText="Nom" sortBy="#{article.nom}">
-										<h:outputText value="#{article.nom}" />
-									</p:column>
-
-									<p:column headerText="Description" sortBy="#{article.description}">
-										<h:outputText value="#{article.description}" />
-									</p:column>
-									<p:column headerText="Prix" sortBy="#{article.prix}">
-										<h:outputText value="#{article.prix}" />
-									</p:column>
-								</p:dataTable>
-
-								<b:dataTable id="articleslist" value="#{listeArticlesAction.listeArticles}" var="article" 
-									page-length="10" page-length-menu="10,20,30" paginated="true">
-
-									<b:dataTableColumn value="#{article.code}" label="Code" />
-
-									<b:dataTableColumn label="Nom">
+								<h:dataTable id="liste_articles" value="#{listeArticlesAction.listeArticles}" var="article" styleClass="table table-striped- table-bordered table-hover table-checkable">
+									<h:column>
+										<f:facet name="header">Code</f:facet>
+										#{article.code}
+									</h:column>
+									<h:column>
+										<f:facet name="header">Nom</f:facet>
 										<h:inputText value="#{listeArticlesAction.editArticle.nom}" rendered="#{article.editable}" />
 										<h:outputText value="#{article.nom}" rendered="#{not article.editable}" />
-									</b:dataTableColumn>
-
-									<b:dataTableColumn label="Description">
+									</h:column>
+									<h:column>
+										<f:facet name="header">Déscription</f:facet>
 										<h:inputText value="#{listeArticlesAction.editArticle.description}" rendered="#{article.editable}" />
 										<h:outputText value="#{article.description}" rendered="#{not article.editable}" />
-									</b:dataTableColumn>
-
-									<b:dataTableColumn label="Prix (DH)">
+									</h:column>
+									<h:column>
+										<f:facet name="header">Prix(DH)</f:facet>
 										<h:inputText value="#{listeArticlesAction.editArticle.prix}" rendered="#{article.editable}" />
 										<h:outputText value="#{article.prix}" rendered="#{not article.editable}" />
-									</b:dataTableColumn>
-
-									<b:dataTableColumn label="Modifier" style="text-align: center">
+									</h:column>
+									<h:column>
+										<f:facet name="header"  style="text-align:center;">Modifier</f:facet>
 										<h:commandLink styleClass="btn btn-warning m-btn m-btn--icon btn-sm m-btn--icon-only" rendered="#{not article.editable}"
 										 action="#{listeArticlesAction.modifierArticle}">
 											<i class="la la-edit"></i>
-											<f:setPropertyActionListener target="#{listeArticlesAction.editArticle}" value="#{article}" update=":articleslist :articles_datatable" />
-											<f:ajax execute="@form" render=":articleslist" />
+											<f:setPropertyActionListener target="#{listeArticlesAction.editArticle}" value="#{article}" update="@form" />
+											<f:ajax execute="@form" render=":liste_articles" />
 										</h:commandLink>
-
-										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.confirmEdit}" update=":articleslist :articles_datatable">
+										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.confirmEdit}" update="@form">
 											<i class="la la-check"></i>
-											<f:ajax execute="@form" render="@form" />
 										</h:commandLink>
-										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.cancelEdit}" update=":articleslist :articles_datatable">
+										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.cancelEdit}" update="@form">
 											<i class="la la-close"></i>
-											<f:ajax execute="@form" render="@form" />
 										</h:commandLink>
-									</b:dataTableColumn>
-
-									<b:dataTableColumn label="Supprimer" style="text-align: center">
+									</h:column>
+									<h:column>
+										<f:facet name="header"> Supprimer</f:facet>
 										<h:commandLink styleClass="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" onclick="return confirm('Voulez-vous vraiment supprimer cet article?');"
-										 action="#{listeArticlesAction.supprimerArticle}" rendered="#{not article.editable}" update=":articleslist :articles_datatable">
+										 action="#{listeArticlesAction.supprimerArticle}" rendered="#{not article.editable}" update=":liste_articles">
 											<i class="la la-trash-o"></i>
 											<f:setPropertyActionListener target="#{listeArticlesAction.editArticle}" value="#{article}" />
-											<f:ajax execute="@form" render="@form" />
 										</h:commandLink>
-									</b:dataTableColumn>
-
-								</b:dataTable>
+									</h:column>
+								</h:dataTable>
 							</div>
 						</div>
 					</h:form>
@@ -208,20 +184,12 @@
 	</div>
 	<!-- end:: Body -->
 	<!-- begin::Footer -->
-	<!--<ui:insert name="footer">
-		<ui:include src="/template commons/footer.xhtml" />
-	</ui:insert>-->
+			<!--<ui:insert name="header">
+				<ui:include src="/template commons/footer.xhtml" />
+			</ui:insert>-->
 	<!-- end::Footer -->
 	<!-- end:: Page -->
 	<!-- begin::Scroll Top -->
-
-	<p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
-		<p:outputPanel id="carDetail" style="text-align:center;">
-			<p:panelGrid columns="2" rendered="#{not empty listeArticlesAtion.editArticle}" columnClasses="label,value">
-				ccccccccccc
-			</p:panelGrid>
-		</p:outputPanel>
-	</p:dialog>
 
 	<div id="m_scroll_top" class="m-scroll-top">
 		<i class="la la-arrow-up"></i>
@@ -304,6 +272,7 @@
 			return confirm('Voulez vous vraiment supprimer ce produit?');
 		}
 	</script>
+	<script type="text/javascript" src="assets/demo/demo12/custom/crud/datatables/extensions/custom_datatable.js"></script>
 </body>
 <!-- end::Body -->
 

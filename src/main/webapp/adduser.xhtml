@@ -6,7 +6,7 @@
 <h:head>
 	<meta charset="utf-8" />
 	<title>
-		Gestion Ventes | Ajouter un client
+		Gestion Ventes | Ajouter un utilisateur
 	</title>
 	<meta name="description" content="Latest updates and statistic charts" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -45,7 +45,7 @@
 			<ui:include src="/template commons/header.xhtml" />
 		</ui:insert>
 		<!-- END: Header -->
-		<h:form id="clientForm" prependId="false">
+		<h:form id="userForm" prependId="false">
 			<!-- begin::Body -->
 			<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
 				<!-- BEGIN: Left Aside -->
@@ -59,7 +59,7 @@
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title m-subheader__title--separator">
-									Clients
+									Utilisateurs
 								</h3>
 								<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 									<li class="m-nav__item m-nav__item--home">
@@ -79,7 +79,7 @@
 								<div class="m-portlet__head-caption">
 									<div class="m-portlet__head-title">
 										<h3 class="m-portlet__head-text">
-											Ajouter un nouveau Client
+											Ajouter un nouveau Utilisateur
 										</h3>
 									</div>
 								</div>
@@ -100,10 +100,10 @@
 											</div>
 										</div>
 
-										<h:panelGroup rendered="#{ajoutClient.addSuccess}">
+										<h:panelGroup rendered="#{ajoutUtilisateur.addSuccess}">
 											<div class="alert alert-success alert-dismissible fade show" role="alert">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-												Vous avez Ajouté ce client avec succès.
+												Vous avez Ajouté cet utilisateur avec succès.
 											</div>
 										</h:panelGroup>
 									</div>
@@ -112,8 +112,8 @@
 											Nom *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputText type="text" class="form-control m-input" id="client_name" pt:placeholder="entrer le nom" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutClient.nomClient}" autocomplete="off" />
+											<h:inputText type="text" class="form-control m-input" id="nom_user" pt:placeholder="entrer le nom" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutUtilisateur.nomUtilisateur}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
@@ -121,36 +121,26 @@
 											Prenom *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputText class="form-control m-input" id="client_prenom" pt:placeholder="enter le prénom" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutClient.prenomClient}" autocomplete="off" />
+											<h:inputText class="form-control m-input" id="prenom_user" pt:placeholder="enter le prénom" pt:data-toggle="m-tooltip" pt:title="Champ Obligatoire"
+											 value="#{ajoutUtilisateur.prenomUtilisateur}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label class="col-form-label col-lg-3 col-sm-12">
-											Télephone *
+											Email *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<div class="m-input-icon m-input-icon--left">
-												<h:inputText type="text" class="form-control m-input" id="client_tel" pt:placeholder="entrer le n° de télephone" pt:data-toggle="m-tooltip"
-												 pt:title="Champ Obligatoire" value="#{ajoutClient.telephoneClient}" autocomplete="off" />
-												<span class="m-input-icon__icon m-input-icon__icon--left">
-													<span>
-														<i class="la la-calculator"></i>
-													</span>
-												</span>
-											</div>
-											<span class="m-form__help">
-												Entrer que des nombres
-											</span>
+											<h:inputText class="form-control m-input" id="email_user" pt:placeholder="enter l'email" pt:data-toggle="m-tooltip" pt:title="Champ Obligatoire"
+											 value="#{ajoutUtilisateur.emailUtilisateur}" autocomplete="off" />
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label class="col-form-label col-lg-3 col-sm-12">
-											Adresse *
+											Mot de passe *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputText class="form-control m-input" id="client_adresse" pt:placeholder="enter l'adresse" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutClient.adresseClient}" autocomplete="off" />
+											<h:inputText class="form-control m-input" id="password_user" pt:type="password" pt:placeholder="enter le mot de passe" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutUtilisateur.passwordUtilisateur}" autocomplete="off" />
 										</div>
 									</div>
 								</div>
@@ -158,7 +148,7 @@
 									<div class="m-form__actions m-form__actions">
 										<div class="row">
 											<div class="col-lg-9 ml-lg-auto">
-												<h:commandButton type="submit" class="btn btn-success" value="Ajouter" action="#{ajoutClient.addClientAction}" update="@form"
+												<h:commandButton type="submit" class="btn btn-success" value="Ajouter" action="#{ajoutUtilisateur.addUsreAction}" update="@form"
 												 render="@form" />
 												<a href="index.xhtml" class="btn btn-secondary">Annuler</a>
 											</div>
@@ -183,7 +173,6 @@
 	</div>
 	<!-- end:: Page -->
 
-
 	<!-- begin::Scroll Top -->
 	<div id="m_scroll_top" class="m-scroll-top">
 		<i class="la la-arrow-up"></i>
@@ -198,7 +187,7 @@
 	<!--end::Base Scripts -->
 
 	<script type="text/javascript">
-		document.getElementById("menu_clients").classList.add('m-menu__item--active');
+		document.getElementById("menu_users").classList.add('m-menu__item--active');
 	</script>
 </body>
 <!-- end::Body -->
