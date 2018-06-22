@@ -2,9 +2,11 @@ package com.mql.gestionventes.Dao;
 
 import java.util.List;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
-
+import javax.persistence.criteria.Root;
 import org.hibernate.HibernateException;
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 
 import com.mql.gestionventes.Entity.Utilisateur;
@@ -88,14 +90,59 @@ public class UtilisateurDao implements DAO<Utilisateur> {
 
 	public List<Utilisateur> getAll(){
 		
-		session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		CriteriaQuery<Utilisateur> criteriaQuery = session.getCriteriaBuilder().createQuery(Utilisateur.class);
-        criteriaQuery.from(Utilisateur.class);
-        List<Utilisateur> allUsers = session.createQuery(criteriaQuery).getResultList();
-        session.getTransaction().commit();
-        session.close();
+		try {
+			
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			CriteriaQuery<Utilisateur> criteriaQuery = session.getCriteriaBuilder().createQuery(Utilisateur.class);
+	        criteriaQuery.from(Utilisateur.class);
+	        List<Utilisateur> allUsers = session.createQuery(criteriaQuery).getResultList();
+	        session.getTransaction().commit();
+	        session.close();
+	        
+	       return allUsers;
+	        
+		}catch(HibernateException ex) {
+			ex.printStackTrace();
+			return  null;
+		}
+		
+	}
+	
+	public Utilisateur loginUser(String username, String password) {
+		
+		/**
+		 * Construction d'une requette pour retourner un utilisateur s'il existe
+		 * avec le nom d'utilisateur et le mot de pass fourni
+		 * si l'utilisateur n'existe pas, le resultat retourné sera null
+		 */
+		
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+			CriteriaQuery<Utilisateur> criteriaQuery = criteriaBuilder.createQuery(Utilisateur.class);
+			Root<Utilisateur> userRoot = criteriaQuery.from(Utilisateur.class);
+			criteriaQuery.select(userRoot);
+			criteriaQuery.where(criteriaBuilder.equal(userRoot.get("login"), username),criteriaBuilder.equal(userRoot.get("password"), password));
+			Query<Utilisateur> query = session.createQuery(criteriaQuery);
+			List <Utilisateur> usersList = query.getResultList();
+			
+			session.getTransaction().commit();
+			session.close();
+			
+			if (usersList.isEmpty()) {
+			    return null;
+			} else {
+			    return usersList.get(0);
+			}
+			
+		
+		}catch(HibernateException ex) {
+			
+			return null;
+		}
         
-		return allUsers;
 	}
 }

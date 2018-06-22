@@ -1,5 +1,7 @@
 package com.mql.gestionventes.Entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,7 +10,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "UTILISATEUR")
-public class Utilisateur {
+public class Utilisateur implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Id @GeneratedValue
 	@Column(name = "ID_UTILISATEUR")
@@ -20,6 +27,11 @@ public class Utilisateur {
 	@Column(name = "PASSWORD")
 	private String password;
 	
+	@Column(name = "NOM")
+	private String nom;
+	
+	@Column(name = "PRENOM")
+	private String prenom;
 	
 	public int getCode() {
 		return code;
@@ -39,5 +51,16 @@ public class Utilisateur {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public String getPrenom() {
+		return prenom;
+	}
+	public void setPrenom(String prenom) {
+		this.prenom = prenom;
+	}
 }

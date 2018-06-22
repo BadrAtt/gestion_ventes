@@ -1,211 +1,309 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" 
-				xmlns:h="http://java.sun.com/jsf/html" 
-				xmlns:ui="http://java.sun.com/jsf/facelets"
-				xmlns:f = "http://java.sun.com/jsf/core"
-				xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets"
+ xmlns:f="http://java.sun.com/jsf/core" xmlns:pt="http://xmlns.jcp.org/jsf/passthrough" xmlns:p="http://primefaces.org/ui"
+ xmlns:b="http://bootsfaces.net/ui">
+<!--  -->
 <!-- begin::Head -->
 
-<head>
-    <meta charset="utf-8" />
-    <title>
-        Gestion Ventes | Liste Articles
-    </title>
-    <meta name="description" content="Latest updates and statistic charts" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!--begin::Web font -->
-    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
-    <script>
-        WebFont.load({
-            google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
-            active: function () {
-                sessionStorage.fonts = true;
-            }
-        });
-    </script>
-    <!--end::Web font -->
-    <!--begin::Base Styles -->
-    <!--begin::Page Vendors -->
-    <link href="assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
-    <!--end::Page Vendors -->
-    <link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
-    <link href="assets/demo/demo12/base/style.bundle.css" rel="stylesheet" type="text/css" />
-    <!--end::Base Styles -->
-    <link rel="shortcut icon" href="assets/demo/demo12/media/img/logo/favicon.ico" />
-</head>
+<h:head>
+	<meta charset="utf-8" />
+	<title>
+		Gestion Ventes | Liste Articles
+	</title>
+	<meta name="description" content="Latest updates and statistic charts" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<!--begin::Web font -->
+	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.16/webfont.js"></script>
+	<script>
+		WebFont.load({
+			google: { "families": ["Poppins:300,400,500,600,700", "Roboto:300,400,500,600,700"] },
+			active: function () {
+				sessionStorage.fonts = true;
+			}
+		});
+	</script>
+	<!--end::Web font -->
+	<!--begin::Base Styles -->
+	<!--begin::Page Vendors -->
+	<link href="assets/vendors/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+	<!--<link href="assets/vendors/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />-->
+	<!--end::Page Vendors -->
+	<link href="assets/vendors/base/vendors.bundle.css" rel="stylesheet" type="text/css" />
+	<link href="assets/demo/demo12/base/style.bundle.css" rel="stylesheet" type="text/css" />
+	<!--end::Base Styles -->
+	<link rel="shortcut icon" href="assets/demo/demo12/media/img/logo/favicon.ico" />
+</h:head>
 <!-- end::Head -->
 <!-- end::Body -->
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
-    <!-- begin:: Page -->
-    <div class="m-grid m-grid--hor m-grid--root m-page">
+	<!-- begin:: Page -->
+	<div class="m-grid m-grid--hor m-grid--root m-page">
 
-        <!-- BEGIN: Header -->
-        <ui:insert name="header">
-            <ui:include src="/template commons/header.xhtml" />
-        </ui:insert>
-        <!-- END: Header -->
+		<!-- BEGIN: Header -->
+		<ui:insert name="header">
+			<ui:include src="/template commons/header.xhtml" />
+		</ui:insert>
+		<!-- END: Header -->
 
-        <!-- begin::Body -->
-        <div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
-            <!-- BEGIN: Left Aside -->
-            <ui:insert name="sidebar">
-                <ui:include src="/template commons/leftmenu.xhtml" />
-            </ui:insert>
-            <!-- END: Left Aside -->
-            <div class="m-grid__item m-grid__item--fluid m-wrapper">
-                <!-- BEGIN: Subheader -->
-                <div class="m-subheader ">
-                    <div class="d-flex align-items-center">
-                        <div class="mr-auto">
-                            <h3 class="m-subheader__title m-subheader__title--separator">
-                                Articles
-                            </h3>
-                            <ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
-                                <li class="m-nav__item m-nav__item--home">
-                                    <a href="index.xhtml" class="m-nav__link m-nav__link--icon">
-                                        <i class="m-nav__link-icon la la-home"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <!-- END: Subheader -->
-                <div class="m-content">
-                    <div class="m-portlet m-portlet--mobile">
-                        <div class="m-portlet__head">
-                            <div class="m-portlet__head-caption">
-                                <div class="m-portlet__head-title">
-                                    <h3 class="m-portlet__head-text">
-                                        Liste des Articles
-                                    </h3>
-                                </div>
-                            </div>
-                            <div class="m-portlet__head-tools">
-                                <ul class="m-portlet__nav">
-                                    <li class="m-portlet__nav-item">
-                                        <a href="addarticle.xhtml" class="btn btn-danger m-btn m-btn--custom m-btn--icon m-btn--air">
-                                            <span>
-                                                <i class="la la-cart-plus"></i>
-                                                <span>
-                                                    Nouveau Article
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="m-portlet__nav-item"></li>
-                                    <li class="m-portlet__nav-item m-dropdown m-dropdown--inline m-dropdown--arrow m-dropdown--align-right m-dropdown--align-push"
-                                        p:m-dropdown-toggle="hover" aria-expanded="true">
-                                        <a href="#" class="m-portlet__nav-link m-dropdown__toggle dropdown-toggle btn btn--sm m-btn--pill btn-secondary m-btn m-btn--label-brand">
-                                            Actions
-                                        </a>
-                                        <div class="m-dropdown__wrapper" style="z-index: 101;">
-                                            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust" style="left: auto; right: 36px;"></span>
-                                            <div class="m-dropdown__inner">
-                                                <div class="m-dropdown__body">
-                                                    <div class="m-dropdown__content">
-                                                        <ul class="m-nav">
-                                                            <li class="m-nav__section m-nav__section--first">
-                                                                <span class="m-nav__section-text">
-                                                                    Outils d'Exportation
-                                                                </span>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="#" class="m-nav__link" id="export_print">
-                                                                    <i class="m-nav__link-icon la la-print"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Imprimer
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                            
-                                                            <li class="m-nav__item">
-                                                                <a href="#" class="m-nav__link" id="export_excel">
-                                                                    <i class="m-nav__link-icon la la-file-excel-o"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        Excel
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                            <li class="m-nav__item">
-                                                                <a href="#" class="m-nav__link" id="export_pdf">
-                                                                    <i class="m-nav__link-icon la la-file-pdf-o"></i>
-                                                                    <span class="m-nav__link-text">
-                                                                        PDF
-                                                                    </span>
-                                                                </a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="m-portlet__body">
-                            <!--begin: Datatable -->
-                            <h:form>
-                            	<h:dataTable value="#{listeArticlesAction.listeArticles}" var="article"
-                            	styleClass="table table-striped- table-bordered table-hover table-checkable">
-								    <h:column>
-								        <f:facet name="header">Code</f:facet>
-								        #{article.code}
-								    </h:column>
-								    <h:column>
-								        <f:facet name="header">Nom</f:facet>
-								        #{article.nom}
-								    </h:column>
-								    <h:column>
-								        <f:facet name="header">Description</f:facet>
-								        #{article.description}
-								    </h:column>
-								    <h:column>
-								        <f:facet name="header">Prix</f:facet>
-								        #{article.prix}
-								    </h:column>
-								</h:dataTable>
-                            </h:form>
-                            <!-- End Tatatable -->
-                        </div>
-                    </div>
-                    <!-- END TABLE PORTLET-->
-                </div>
-            </div>
-        </div>
+		<!-- begin::Body -->
+		<div class="m-grid__item m-grid__item--fluid m-grid m-grid--ver-desktop m-grid--desktop m-body">
+			<!-- BEGIN: Left Aside -->
+			<ui:insert name="sidebar">
+				<ui:include src="/template commons/leftmenu.xhtml" />
+			</ui:insert>
+			<!-- END: Left Aside -->
+			<div class="m-grid__item m-grid__item--fluid m-wrapper">
+				<!-- BEGIN: Subheader -->
+				<div class="m-subheader ">
+					<div class="d-flex align-items-center">
+						<div class="mr-auto">
+							<h3 class="m-subheader__title m-subheader__title--separator">
+								Articles
+							</h3>
+							<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
+								<li class="m-nav__item m-nav__item--home">
+									<a href="index.xhtml" class="m-nav__link m-nav__link--icon">
+										<i class="m-nav__link-icon la la-home"></i>
+									</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- END: Subheader -->
+				<div class="m-content">
+					<h:form id="listeForm" prependId="false">
+						<div class="m-portlet m-portlet--mobile">
+							<div class="m-portlet__head">
+								<div class="m-portlet__head-caption">
+									<div class="m-portlet__head-title">
+										<h3 class="m-portlet__head-text">
+											Liste des Articles
+										</h3>
+									</div>
+								</div>
+								<div class="m-portlet__head-tools">
+									<ul class="m-portlet__nav">
+										<li class="m-portlet__nav-item">
+											<div class="btn-group m-btn-group" role="group" aria-label="...">
+												<h:commandLink value="Excel" type="button" class="btn btn-secondary">
+													<p:dataExporter id="dataExporter" type="xls" target="articles_datatable" fileName="liste articles" pageOnly="true" />
+												</h:commandLink>
+												<h:commandLink value="CSV" type="button" class="btn btn-secondary">
+													<p:dataExporter id="dataExporter" type="csv" target="articles_datatable" fileName="liste articles" pageOnly="true" />
+												</h:commandLink>
+												<h:commandLink value="PDF" type="button" class="btn btn-secondary">
+													<p:dataExporter id="dataExporter" type="pdf" target="articles_datatable" fileName="liste articles" pageOnly="true" />
+												</h:commandLink>
+												<h:commandLink value="Print" onclick="printData()" type="button" class="btn btn-secondary">
 
-        <!-- end:: Body -->
-        <!-- begin::Footer -->
-        <ui:insert name="header">
-            <ui:include src="/template commons/footer.xhtml" />
-        </ui:insert>
-        <!-- end::Footer -->
-    </div>
-    <!-- end:: Page -->
-    <!-- begin::Scroll Top -->
-    <div id="m_scroll_top" class="m-scroll-top">
-        <i class="la la-arrow-up"></i>
-    </div>
-    <!-- end::Scroll Top -->
-   <!-- begin::Quick Nav -->	
-    	<!--begin::Base Scripts -->
-		<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
-		<script src="assets/demo/demo12/base/scripts.bundle.js" type="text/javascript"></script>
-		<!--end::Base Scripts -->   
-        <!--begin::Page Vendors -->
-		<script src="assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
-		<!--end::Page Vendors -->  
-        <!--begin::Page Resources -->
-		<script src="assets/demo/demo12/custom/crud/datatables/extensions/buttons.js" type="text/javascript"></script>
-		<!--end::Page Resources -->
+												</h:commandLink>
+											</div>
+										</li>
+										<li class="m-portlet__nav-item">
+											<a href="addarticle.xhtml" class="btn btn-primary m-btn m-btn--custom m-btn--icon m-btn--air">
+												<span>
+													<i class="la la-cart-plus"></i>
+													<span>
+														Nouveau Article
+													</span>
+												</span>
+											</a>
+										</li>
+									</ul>
+								</div>
+							</div>
+							<div class="m-portlet__body">
+								<h:panelGroup rendered="#{listeArticlesAction.showSuccess}">
+									<div class="alert alert-success alert-dismissible show" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+										Vous avez Modifié cet article avec succès.
+									</div>
+								</h:panelGroup>
+								<h:panelGroup rendered="#{listeArticlesAction.showdeleteSuccess}">
+									<div class="alert alert-success alert-dismissible show" role="alert">
+										<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
+										Vous avez Supprimé cet article avec succès.
+									</div>
+								</h:panelGroup>
+								<!--begin: Datatable -->
+								<p:dataTable rows="10" id="articles_datatable" var="article" value="#{listeArticlesAction.listeArticles}" tableStyleClass="table table-striped- table-bordered table-hover table-checkable"
+								 emptyMessage="pas d'article" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+								 rowsPerPageTemplate="10,20,30" rendered="false">
 
-    <script type="text/javascript">
-        document.getElementById("menu_articles").classList.add('m-menu__item--active');
-    </script>
+									<p:column headerText="Code" sortBy="#{article.code}">
+										<h:outputText value="#{article.code}" />
+									</p:column>
 
+									<p:column headerText="Nom" sortBy="#{article.nom}">
+										<h:outputText value="#{article.nom}" />
+									</p:column>
+
+									<p:column headerText="Description" sortBy="#{article.description}">
+										<h:outputText value="#{article.description}" />
+									</p:column>
+									<p:column headerText="Prix" sortBy="#{article.prix}">
+										<h:outputText value="#{article.prix}" />
+									</p:column>
+								</p:dataTable>
+
+								<b:dataTable id="articleslist" value="#{listeArticlesAction.listeArticles}" var="article" 
+									page-length="10" page-length-menu="10,20,30" paginated="true">
+
+									<b:dataTableColumn value="#{article.code}" label="Code" />
+
+									<b:dataTableColumn label="Nom">
+										<h:inputText value="#{listeArticlesAction.editArticle.nom}" rendered="#{article.editable}" />
+										<h:outputText value="#{article.nom}" rendered="#{not article.editable}" />
+									</b:dataTableColumn>
+
+									<b:dataTableColumn label="Description">
+										<h:inputText value="#{listeArticlesAction.editArticle.description}" rendered="#{article.editable}" />
+										<h:outputText value="#{article.description}" rendered="#{not article.editable}" />
+									</b:dataTableColumn>
+
+									<b:dataTableColumn label="Prix (DH)">
+										<h:inputText value="#{listeArticlesAction.editArticle.prix}" rendered="#{article.editable}" />
+										<h:outputText value="#{article.prix}" rendered="#{not article.editable}" />
+									</b:dataTableColumn>
+
+									<b:dataTableColumn label="Modifier" style="text-align: center">
+										<h:commandLink styleClass="btn btn-warning m-btn m-btn--icon btn-sm m-btn--icon-only" rendered="#{not article.editable}"
+										 action="#{listeArticlesAction.modifierArticle}">
+											<i class="la la-edit"></i>
+											<f:setPropertyActionListener target="#{listeArticlesAction.editArticle}" value="#{article}" update=":articleslist :articles_datatable" />
+											<f:ajax execute="@form" render=":articleslist" />
+										</h:commandLink>
+
+										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.confirmEdit}" update=":articleslist :articles_datatable">
+											<i class="la la-check"></i>
+											<f:ajax execute="@form" render="@form" />
+										</h:commandLink>
+										<h:commandLink rendered="#{article.editable}" action="#{listeArticlesAction.cancelEdit}" update=":articleslist :articles_datatable">
+											<i class="la la-close"></i>
+											<f:ajax execute="@form" render="@form" />
+										</h:commandLink>
+									</b:dataTableColumn>
+
+									<b:dataTableColumn label="Supprimer" style="text-align: center">
+										<h:commandLink styleClass="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" onclick="return confirm('Voulez-vous vraiment supprimer cet article?');"
+										 action="#{listeArticlesAction.supprimerArticle}" rendered="#{not article.editable}" update=":articleslist :articles_datatable">
+											<i class="la la-trash-o"></i>
+											<f:setPropertyActionListener target="#{listeArticlesAction.editArticle}" value="#{article}" />
+											<f:ajax execute="@form" render="@form" />
+										</h:commandLink>
+									</b:dataTableColumn>
+
+								</b:dataTable>
+							</div>
+						</div>
+					</h:form>
+				</div>
+				<!-- End Tatatable -->
+			</div>
+		</div>
+		<!-- END TABLE PORTLET-->
+	</div>
+	<!-- end:: Body -->
+	<!-- begin::Footer -->
+	<!--<ui:insert name="footer">
+		<ui:include src="/template commons/footer.xhtml" />
+	</ui:insert>-->
+	<!-- end::Footer -->
+	<!-- end:: Page -->
+	<!-- begin::Scroll Top -->
+
+	<p:dialog header="Car Info" widgetVar="carDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+		<p:outputPanel id="carDetail" style="text-align:center;">
+			<p:panelGrid columns="2" rendered="#{not empty listeArticlesAtion.editArticle}" columnClasses="label,value">
+				ccccccccccc
+			</p:panelGrid>
+		</p:outputPanel>
+	</p:dialog>
+
+	<div id="m_scroll_top" class="m-scroll-top">
+		<i class="la la-arrow-up"></i>
+	</div>
+	<div class="modal" id="userEditModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">
+						Modifier le produit
+					</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">
+							&#215;
+						</span>
+					</button>
+				</div>
+				<div class="modal-body">
+
+					<div class="form-group">
+						<label for="edit_product_name" class="form-control-label">
+							Nom:
+						</label>
+						<h:inputText type="text" class="form-control" id="edit_product_name" value="#{listeArticlesAction.editArticle.nom}" autocomplete="off"
+						/>
+					</div>
+					<div class="form-group">
+						<label for="edit_product_description" class="form-control-label">
+							Description:
+						</label>
+						<h:inputTextarea class="form-control" id="edit_product_description" value="#{listeArticlesAction.editArticle.description}"
+						 autocomplete="off" />
+					</div>
+					<div class="form-group">
+						<label for="edit_product_price" class="form-control-label">
+							Prix(DH):
+						</label>
+						<h:inputText type="text" class="form-control m-input" id="edit_product_price" value="#{listeArticlesAction.editArticle.prix}"
+						 autocomplete="off" />
+					</div>
+
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-dismiss="modal">
+						Annuler
+					</button>
+					<button type="button" class="btn btn-primary">
+						Modifier
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end::Scroll Top -->
+	<!--begin::Base Scripts -->
+	<script src="assets/vendors/base/vendors.bundle.js" type="text/javascript"></script>
+	<script src="assets/demo/demo12/base/scripts.bundle.js" type="text/javascript"></script>
+	<!--begin::Page Resources -->
+	<script src="assets/demo/demo12/custom/crud/forms/validation/custom_validation.js" type="text/javascript"></script>
+	<!--end::Page Resources -->
+	<!--end::Base Scripts -->
+
+	<script src="assets/vendors/custom/datatables/datatables.bundle.js" type="text/javascript"></script>
+	<!--end::Page Vendors -->
+
+	<script type="text/javascript">
+		document.getElementById("menu_articles").classList.add('m-menu__item--active');
+	</script>
+	<script type="text/javascript">
+		function printData() {
+			var divToPrint = document.getElementById("articleslist");
+			divToPrint.setAttribute("border", "1");
+			newWin = window.open("");
+			newWin.document.write(divToPrint.outerHTML);
+			newWin.print();
+			newWin.close();
+		}
+
+		function confirmDelete() {
+			return confirm('Voulez vous vraiment supprimer ce produit?');
+		}
+	</script>
 </body>
 <!-- end::Body -->
 

@@ -8,7 +8,7 @@
       <property name = "hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
       
       <!--Nom de la base de donnes -->
-      <property name = "hibernate.connection.url"> jdbc:mysql://localhost/gestion_ventes</property>
+      <property name = "hibernate.connection.url">jdbc:mysql://localhost/G_Stock</property>
       <property name = "hibernate.connection.username">root</property>
       <property name = "hibernate.connection.password"></property>
       <property name="current_session_context_class">thread</property>
@@ -19,10 +19,11 @@
       <property name="hibernate.connection.pool_size">1</property>
       
       <!-- mapping -->
+      <mapping class="com.mql.gestionventes.Entity.Inventaire" />
+      <mapping class="com.mql.gestionventes.Entity.Achat" />
       <mapping class="com.mql.gestionventes.Entity.Article" />
-      <mapping class="com.mql.gestionventes.Entity.Client" />
       <mapping class="com.mql.gestionventes.Entity.Commande" />
-      <mapping class="com.mql.gestionventes.Entity.Utilisateur"/>
+      <mapping class="com.mql.gestionventes.Entity.Client" />
       
    </session-factory>
 </hibernate-configuration>

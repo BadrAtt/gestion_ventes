@@ -26,4 +26,8 @@ public class UtilisateurService {
 	public List<Utilisateur> getAllUsers(){
 		return DaoFactory.getUtilisateurDao().getAll();
 	}
+	
+	public Utilisateur loginUser(String username, String password) {
+		return DaoFactory.getUtilisateurDao().loginUser(username, password);
+	}
 }

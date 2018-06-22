@@ -31,6 +31,7 @@ public class Article {
 	@OneToMany(mappedBy = "articleCmd")
 	private Collection<Commande> commandes = new ArrayList<Commande>();// un produit peut etre le sujet de plusieurs commandes
 	
+	private boolean editable;
 	
 	public int getCode() {
 		return code;
@@ -55,5 +56,11 @@ public class Article {
 	}
 	public void setPrix(int prix) {
 		this.prix = prix;
+	}
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
 	}
 }

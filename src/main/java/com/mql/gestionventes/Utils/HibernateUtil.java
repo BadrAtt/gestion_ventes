@@ -12,11 +12,14 @@ import org.hibernate.cfg.Configuration;
 public class HibernateUtil {
 
 	public static final SessionFactory sessionFactory;
+	public static final SessionFactory stockSessionFactory;
     
     static {
         try {
           
             sessionFactory = new Configuration().configure("com/mql/gestionventes/Config/hibernate_configuration.xml")
+            		.buildSessionFactory();
+            stockSessionFactory = new Configuration().configure("com/mql/gestionventes/Config/hibernate_stock_cfg.xml")
             		.buildSessionFactory();
             
         } catch (Throwable ex) {
@@ -33,5 +36,10 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+
+	public static SessionFactory getStockSessionfactory() {
+		return stockSessionFactory;
+	}
 	
+    
 }

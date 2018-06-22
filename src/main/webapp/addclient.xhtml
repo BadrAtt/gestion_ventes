@@ -39,7 +39,7 @@
 
 <body class="m-page--fluid m--skin- m-content--skin-light2 m-header--fixed m-header--fixed-mobile m-aside-left--enabled m-aside-left--skin-dark m-aside-left--offcanvas m-footer--push m-aside--offcanvas-default">
 
-	<h:form id="articleForm" prependId="false">
+	<h:form id="clientForm" prependId="false">
 		<!-- begin:: Page -->
 		<div class="m-grid m-grid--hor m-grid--root m-page">
 
@@ -62,7 +62,7 @@
 						<div class="d-flex align-items-center">
 							<div class="mr-auto">
 								<h3 class="m-subheader__title m-subheader__title--separator">
-									Articles
+									Clients
 								</h3>
 								<ul class="m-subheader__breadcrumbs m-nav m-nav--inline">
 									<li class="m-nav__item m-nav__item--home">
@@ -82,7 +82,7 @@
 								<div class="m-portlet__head-caption">
 									<div class="m-portlet__head-title">
 										<h3 class="m-portlet__head-text">
-											Ajouter un nouveau Article
+											Ajouter un nouveau Client
 										</h3>
 									</div>
 								</div>
@@ -103,23 +103,10 @@
 											</div>
 										</div>
 										
-						
-										<div class="m-alert m-alert--icon alert alert-danger m--hide" role="alert" id="m_form_1_msg">
-											<div class="m-alert__icon">
-												<i class="la la-warning"></i>
-											</div>
-											<div class="m-alert__text">
-												Vous devez remplire tous les champs oblogatoire!
-											</div>
-											<div class="m-alert__close">
-												<button type="button" class="close" data-close="alert" aria-label="Close"></button>
-											</div>
-										</div>
-										
-										<h:panelGroup rendered="#{ajoutArticle.showSuccess}">
+										<h:panelGroup rendered="#{ajoutClient.addSuccess}">
 											<div class="alert alert-success alert-dismissible fade show" role="alert">
 												<button type="button" class="close" data-dismiss="alert" aria-label="Close"></button>
-													Vous avez Ajouté cet article avec succès.
+													Vous avez Ajouté ce client avec succès.
 											</div>
 										</h:panelGroup>
 									</div>
@@ -128,33 +115,30 @@
 											Nom *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputText type="text" class="form-control m-input" id="product_name" 
-											pt:placeholder="Entrer le nom" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutArticle.nomArticle}"
+											<h:inputText type="text" class="form-control m-input" id="client_name" 
+											 pt:placeholder="entrer le nom" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutClient.nomClient}"
 											 autocomplete="off" />
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label class="col-form-label col-lg-3 col-sm-12">
-											Déescription *
+											Prenom *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
-											<h:inputTextarea class="form-control m-input"  id="product_description" pt:placeholder="Enter la déscription" pt:data-toggle="m-tooltip"
-											 pt:title="Champ Obligatoire" value="#{ajoutArticle.descriptionArticle}" 
+											<h:inputText class="form-control m-input" id="client_prenom" pt:placeholder="enter le prénom" pt:data-toggle="m-tooltip"
+											 pt:title="Champ Obligatoire" value="#{ajoutClient.prenomClient}" 
 											 autocomplete="off"/>
-											 <span class="m-form__help">
-												Minimum 10 caractères
-											</span>
 										</div>
 									</div>
 									<div class="form-group m-form__group row">
 										<label class="col-form-label col-lg-3 col-sm-12">
-											Prix *
+											Télephone *
 										</label>
 										<div class="col-lg-4 col-md-9 col-sm-12">
 											<div class="m-input-icon m-input-icon--left">
-												<h:inputText type="text" class="form-control m-input"  id="product_price" pt:placeholder="Entrer le prix en DH" pt:data-toggle="m-tooltip"
-												 pt:title="Champ Obligatoire" value="#{ajoutArticle.prixArticle}"
+												<h:inputText type="text" class="form-control m-input"  id="client_tel" pt:placeholder="entrer le n° de télephone" pt:data-toggle="m-tooltip"
+												 pt:title="Champ Obligatoire" value="#{ajoutClient.telephoneClient}"
 												 autocomplete="off" />
 												<span class="m-input-icon__icon m-input-icon__icon--left">
 													<span>
@@ -167,13 +151,23 @@
 											</span>
 										</div>
 									</div>
+									<div class="form-group m-form__group row">
+											<label class="col-form-label col-lg-3 col-sm-12">
+												Adresse *
+											</label>
+											<div class="col-lg-4 col-md-9 col-sm-12">
+												<h:inputText class="form-control m-input" id="client_adresse" pt:placeholder="enter l'adresse" pt:data-toggle="m-tooltip"
+												 pt:title="Champ Obligatoire" value="#{ajoutClient.adresseClient}" 
+												 autocomplete="off"/>
+											</div>
+										</div>
 								</div>
 								<div class="m-portlet__foot m-portlet__foot--fit">
 									<div class="m-form__actions m-form__actions">
 										<div class="row">
 											<div class="col-lg-9 ml-lg-auto">
 												<h:commandButton type="submit" class="btn btn-success" value="Ajouter" 
-												action="#{ajoutArticle.addArticleAction}" update="@form" render="@form"/>
+												action="#{ajoutClient.addClientAction}" update="@form" render="@form"/>
 												<a href="index.xhtml" class="btn btn-secondary">Annuler</a>
 											</div>
 										</div>
@@ -211,15 +205,7 @@
 	<!--end::Base Scripts -->
 
 	<script type="text/javascript">
-		document.getElementById("menu_articles").classList.add('m-menu__item--active');
-	</script>
-	
-	<script>
-		function check(){
-			return jQuery(document).ready(function() {
-			    FormControls.init()
-			});
-		}
+		document.getElementById("menu_clients").classList.add('m-menu__item--active');
 	</script>
 </body>
 <!-- end::Body -->

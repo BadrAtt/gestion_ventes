@@ -12,7 +12,8 @@ public class AjoutArticleAction {
 	
 	private String nomArticle;
 	private String descriptionArticle;
-	private int prixArticle;
+	private String prixArticle;
+	private boolean showSuccess = false;
 		
 	public String getNomArticle() {
 		return nomArticle;
@@ -26,22 +27,36 @@ public class AjoutArticleAction {
 	public void setDescriptionArticle(String descriptionArticle) {
 		this.descriptionArticle = descriptionArticle;
 	}
-	public int getPrixArticle() {
+	
+	public String getPrixArticle() {
 		return prixArticle;
 	}
-	public void setPrixArticle(int prixArticle) {
+	public void setPrixArticle(String prixArticle) {
 		this.prixArticle = prixArticle;
 	}
-
+	
+	public boolean isShowSuccess() {
+		return showSuccess;
+	}
+	public void setShowSuccess(boolean showSuccess) {
+		this.showSuccess = showSuccess;
+	}
 	public void addArticleAction() {
 		
 		Article article = new Article();
 		article.setNom(this.nomArticle);
 		article.setDescription(this.descriptionArticle);
-		article.setPrix(this.prixArticle);
+		article.setPrix(Integer.parseInt(this.prixArticle));
 		
-		ServiceFactory.getArticleService().createArticle(article);
-		
+		if(ServiceFactory.getArticleService().createArticle(article)) {
+			
+			this.nomArticle = "";
+			this.descriptionArticle = "";
+			this.prixArticle = "";
+			this.showSuccess = true;
+		}
+		else {
+		}
 	}
 	
 }
