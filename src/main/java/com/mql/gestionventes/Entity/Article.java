@@ -5,6 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,6 +32,7 @@ public class Article {
 	@OneToMany(mappedBy = "articleCmd")
 	private Collection<Commande> commandes = new ArrayList<Commande>();// un produit peut etre le sujet de plusieurs commandes
 	
+	@Transient
 	private boolean editable;
 	
 	public int getCode() {

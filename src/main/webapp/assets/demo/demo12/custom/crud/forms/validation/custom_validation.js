@@ -94,6 +94,31 @@ var FormControls = {
             submitHandler: function(e) {
             	return true;
             }
+        }),
+        $("#modalForm").validate({
+            rules: {
+            	edit_user_name: {
+                    required: !0
+                },
+                edit_user_prenom: {
+                    required: !0
+                },
+                edit_user_email: {
+                	required: !0,
+                    email: !0
+                },
+                edit_user_passowrd : {
+                	required: !0
+                }
+            },
+            invalidHandler: function(e, r) {
+                var i = $("#m_form_1_msg");
+                i.removeClass("m--hide").show(), mApp.scrollTo(i, -200)
+                return false;
+            },
+            submitHandler: function(e) {
+            	return true;
+            }
         })
     }
 };

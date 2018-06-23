@@ -1,6 +1,8 @@
 package com.mql.gestionventes.Entity;
 
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -34,6 +36,12 @@ public class Commande {
 	
 	@Column(name = "QUANTITE_CMD")
 	private int qteCmd; // la quantité commandé
+	
+	@Column(name = "DATE_CMD")
+	private Date dateCommande; // la date de la commande
+	
+	@Column(name = "NOTES")
+	private String notes;
 
 	public int getCode() {
 		return code;
@@ -66,6 +74,20 @@ public class Commande {
 	public void setQteCmd(int qteCmd) {
 		this.qteCmd = qteCmd;
 	}
-	
-	
+
+	public Date getDateCommande() {
+		return dateCommande;
+	}
+
+	public void setDateCommande(Date dateCommande) {
+		this.dateCommande = dateCommande;
+	}
+
+	public String getNotes() {
+		return notes;
+	}
+
+	public void setNotes(String notes) {
+		this.notes = notes;
+	}
 }

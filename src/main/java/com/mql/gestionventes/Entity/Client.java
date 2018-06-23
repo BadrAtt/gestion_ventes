@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "CLIENT")
@@ -33,6 +34,8 @@ public class Client {
 	@OneToMany(mappedBy = "client")
 	private Collection<Commande> commandes = new ArrayList<Commande>();// les commandes d'un client
 	
+	@Transient
+	private boolean editable;
 	
 	public int getCode() {
 		return code;
@@ -64,6 +67,17 @@ public class Client {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
-	
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	public Collection<Commande> getCommandes() {
+		return commandes;
+	}
+	public void setCommandes(Collection<Commande> commandes) {
+		this.commandes = commandes;
+	}
 	
 }

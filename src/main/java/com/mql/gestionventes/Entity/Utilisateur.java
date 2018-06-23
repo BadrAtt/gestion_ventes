@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "UTILISATEUR")
@@ -32,6 +33,9 @@ public class Utilisateur implements Serializable{
 	
 	@Column(name = "PRENOM")
 	private String prenom;
+	
+	@Transient
+	private boolean editable;
 	
 	public int getCode() {
 		return code;
@@ -63,4 +67,12 @@ public class Utilisateur implements Serializable{
 	public void setPrenom(String prenom) {
 		this.prenom = prenom;
 	}
+	public boolean isEditable() {
+		return editable;
+	}
+	public void setEditable(boolean editable) {
+		this.editable = editable;
+	}
+	
+	
 }
