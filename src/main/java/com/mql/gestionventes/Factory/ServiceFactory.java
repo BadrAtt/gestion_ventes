@@ -7,6 +7,8 @@ public class ServiceFactory {
 	private static CommandeService commandeService;
 	private static ClientService clientService;
 	private static UtilisateurService userService;
+	private static InventaireService inventaireService;
+	private static AchatService achatService;
 	
 	
 	/**
@@ -17,6 +19,8 @@ public class ServiceFactory {
 		commandeService = new CommandeService();
 		clientService = new ClientService();
 		userService = new UtilisateurService();
+		inventaireService = new InventaireService();
+		achatService = new AchatService();
 	}
 
 	public static ArticleService getArticleService() {
@@ -34,5 +38,14 @@ public class ServiceFactory {
 	public static UtilisateurService getUserService() {
 		return userService;
 	}
+
+	public static InventaireService getInventaireService() {
+		return inventaireService;
+	}
+
+	public static AchatService getAchatService() {
+		return achatService;
+	}
+	
 	
 }

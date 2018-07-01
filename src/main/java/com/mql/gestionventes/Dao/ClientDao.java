@@ -98,4 +98,23 @@ public class ClientDao implements DAO<Client> {
         
 		return allClients;
 	}
+	
+	public int getTotalClient(){
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			CriteriaQuery<Client> criteriaQuery = session.getCriteriaBuilder().createQuery(Client.class);
+	        criteriaQuery.from(Client.class);
+	        int totalClient = session.createQuery(criteriaQuery).getResultList().size();
+	        session.getTransaction().commit();
+	        session.close();
+	        
+			return totalClient;
+			
+		}catch(HibernateException hEx) {
+			hEx.printStackTrace();
+		}
+		
+		return 0;
+	}
 }

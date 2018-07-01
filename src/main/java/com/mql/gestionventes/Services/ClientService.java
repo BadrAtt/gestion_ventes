@@ -26,4 +26,8 @@ public class ClientService {
 	public List<Client> getAllClients(){
 		return DaoFactory.getClientDao().getAll();
 	}
+	
+	public int getTotalClient(){
+		return DaoFactory.getClientDao().getTotalClient();
+	}
 }

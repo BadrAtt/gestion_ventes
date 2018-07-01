@@ -101,11 +101,11 @@ private List<Client> listeClients = new ArrayList<Client>();
 	 */
 	public void supprimerClient() {
 		
-		if(ServiceFactory.getClientService().deleteClient(editClient)) {	
-			setShowdeleteSuccess(true);
-			listeClients = ServiceFactory.getClientService().getAllClients();
-			setShowSuccess(false);
-		}
+		ServiceFactory.getClientService().deleteClient(editClient);
+		setShowdeleteSuccess(true);
+		listeClients = ServiceFactory.getClientService().getAllClients();
+		setShowSuccess(false);
+		setShowdeleteSuccess(true);
 	}
 
 	/**
@@ -133,6 +133,7 @@ private List<Client> listeClients = new ArrayList<Client>();
 		editClient.setEditable(false);
 		ServiceFactory.getClientService().updateClient(editClient);
 		setShowSuccess(true);
+		setShowdeleteSuccess(false);
 		System.out.println("confirm edit");
 	}
 	

@@ -24,6 +24,7 @@
       <mapping class="com.mql.gestionventes.Entity.Article" />
       <mapping class="com.mql.gestionventes.Entity.Commande" />
       <mapping class="com.mql.gestionventes.Entity.Client" />
+      <mapping class="com.mql.gestionventes.Entity.Utilisateur"/>
       
    </session-factory>
 </hibernate-configuration>

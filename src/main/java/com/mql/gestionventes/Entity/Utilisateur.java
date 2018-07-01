@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "UTILISATEUR")
+@Table(name = "UTILISATEUR", catalog="gestion_ventes")
 public class Utilisateur implements Serializable{
 
 	/**

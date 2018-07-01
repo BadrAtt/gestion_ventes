@@ -1,9 +1,8 @@
 package com.mql.gestionventes.Entity;
 
 
+import java.io.Serializable;
 import java.util.Date;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,18 +18,24 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "COMMANDE")
-public class Commande {
+@Table(name = "COMMANDE", catalog="gestion_ventes")
+public class Commande implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 2741447469293956637L;
+	
 
 	@Id @GeneratedValue
 	@Column(name = "ID_COMMANDE")
 	private int code;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "CLIENT_ID")
-	private Client client; // chaque commande est faite pour un client, et plusieurs commandes peut etres faites par un client
+	private Client client; // chaque commande est faite pour un client, et plusieurs commandes peut etres faites par un client cascade = CascadeType.ALL
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "ARTICLE_ID")
 	private Article articleCmd; //L'article commandé
 	
@@ -38,7 +43,7 @@ public class Commande {
 	private int qteCmd; // la quantité commandé
 	
 	@Column(name = "DATE_CMD")
-	private Date dateCommande; // la date de la commande
+	private Date dateCmd; // la date de la commande
 	
 	@Column(name = "NOTES")
 	private String notes;
@@ -75,12 +80,12 @@ public class Commande {
 		this.qteCmd = qteCmd;
 	}
 
-	public Date getDateCommande() {
-		return dateCommande;
+	public Date getDateCmd() {
+		return dateCmd;
 	}
 
-	public void setDateCommande(Date dateCommande) {
-		this.dateCommande = dateCommande;
+	public void setDateCmd(Date dateCmd) {
+		this.dateCmd = dateCmd;
 	}
 
 	public String getNotes() {

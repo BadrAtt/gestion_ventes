@@ -1,5 +1,6 @@
 package com.mql.gestionventes.Services;
 
+import java.util.Date;
 import java.util.List;
 
 import com.mql.gestionventes.Entity.Commande;
@@ -25,6 +26,22 @@ public class CommandeService {
 	
 	public List<Commande> getAllCommandes() {
 		return DaoFactory.getCommandeDao().getAll();
+	}
+	
+	public long getQuantiteCommande(Date startDate, Date endDate, int artId) {
+		return DaoFactory.getCommandeDao().getQuantiteCommande(startDate,endDate,artId);
+	}
+	
+	public int getTotalCommande() {
+		return DaoFactory.getCommandeDao().getTotalCommande();
+	}
+	
+	public List<String> getDateAndQteCmd() {
+		return DaoFactory.getCommandeDao().getDateAndQteCmd();
+	}
+	
+	public List<String> getArticleAndQteCmd() {
+		return DaoFactory.getCommandeDao().getArticleAndQteCmd();
 	}
 }
 

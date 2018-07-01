@@ -145,4 +145,48 @@ public class UtilisateurDao implements DAO<Utilisateur> {
 		}
         
 	}
+	
+	public int getTotalUsers() {
+
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			CriteriaQuery<Utilisateur> criteriaQuery = session.getCriteriaBuilder().createQuery(Utilisateur.class);
+	        criteriaQuery.from(Utilisateur.class);
+	        int totalUsers = session.createQuery(criteriaQuery).getResultList().size();
+	        session.getTransaction().commit();
+	        session.close();
+	        
+			return totalUsers;
+			
+		}catch(HibernateException hEx) {
+			hEx.printStackTrace();
+			
+		}
+		return 0;
+        
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Utilisateur> getLastUsers(){
+		
+		try {
+			
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			
+			String hql = "SELECT u FROM Utilisateur u ORDER BY u.code DESC";
+			List<Utilisateur> results = (List<Utilisateur>)session.createQuery(hql).setMaxResults(3).list();
+			
+	        session.getTransaction().commit();
+	        session.close();
+	        
+	       return results;
+	        
+		}catch(HibernateException ex) {
+			ex.printStackTrace();
+			return  null;
+		}
+		
+	}
 }

@@ -30,4 +30,12 @@ public class UtilisateurService {
 	public Utilisateur loginUser(String username, String password) {
 		return DaoFactory.getUtilisateurDao().loginUser(username, password);
 	}
+	
+	public int getTotalUsers() {
+		return DaoFactory.getUtilisateurDao().getTotalUsers();
+	}
+	
+	public List<Utilisateur> getLastUsers() {
+		return DaoFactory.getUtilisateurDao().getLastUsers();
+	}
 }

@@ -119,6 +119,28 @@ var FormControls = {
             submitHandler: function(e) {
             	return true;
             }
+        }),
+        $("#commandeForm").validate({
+            rules: {
+            	commande_client: {
+                    required: !0
+                },
+                commande_article: {
+                    required: !0
+                },
+                commande_qte : {
+                	required: !0,
+                	digits: !0
+                }
+            },
+            invalidHandler: function(e, r) {
+                var i = $("#m_form_1_msg");
+                i.removeClass("m--hide").show(), mApp.scrollTo(i, -200)
+                return false;
+            },
+            submitHandler: function(e) {
+            	return true;
+            }
         })
     }
 };

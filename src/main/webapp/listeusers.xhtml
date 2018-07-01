@@ -161,7 +161,7 @@
 									<h:column>
 										<f:facet name="header"> Supprimer</f:facet>
 										<h:commandLink styleClass="btn btn-danger m-btn m-btn--icon btn-sm m-btn--icon-only" onclick="return confirm('Voulez-vous vraiment supprimer cet article?');"
-										 action="#{listeUserslesAction.supprimerUtilisateur}" rendered="#{not utilisateur.editable}" update=":liste_users">
+										 action="#{listeUsersAction.supprimerUtilisateur}" rendered="#{not utilisateur.editable}" update=":liste_users">
 											<i class="la la-trash-o"></i>
 											<f:setPropertyActionListener target="#{listeUsersAction.editUtilisateur}" value="#{utilisateur}" />
 										</h:commandLink>

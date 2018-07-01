@@ -6,11 +6,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ACHAT")
+@Table(name = "ACHAT", catalog="G_Stock")
 public class Achat {
 
 	@Id @GeneratedValue
@@ -18,6 +19,7 @@ public class Achat {
 	private Integer code;
 	
 	@ManyToOne
+	@JoinColumn(name = "ARTICLE_ID")
 	private Article article;
 	
 	@Column(name = "QTE_ACHETE")

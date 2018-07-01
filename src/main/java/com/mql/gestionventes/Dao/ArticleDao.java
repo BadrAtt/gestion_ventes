@@ -99,4 +99,57 @@ public class ArticleDao implements DAO<Article> {
 		return allArticles;
 	}
 
+	
+	public int getTotalArticles() {
+
+		try {
+			session = HibernateUtil.getSessionFactory().getCurrentSession();
+			session.beginTransaction();
+			CriteriaQuery<Article> criteriaQuery = session.getCriteriaBuilder().createQuery(Article.class);
+	        criteriaQuery.from(Article.class);
+	        int totalArticles = session.createQuery(criteriaQuery).getResultList().size();
+	        session.getTransaction().commit();
+	        session.close();
+	        
+			return totalArticles;
+			
+		}catch(HibernateException hEx) {
+			hEx.printStackTrace();
+			
+		}
+		return 0;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Article> getTopArticles(){
+		
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = "SELECT a FROM Article a INNER JOIN a.commandes c GROUP BY a.code ORDER BY c.qteCmd";
+		List<Article> results = (List<Article>)session.createQuery(hql).list();
+
+        session.getTransaction().commit();
+        session.close();
+        
+		return results;
+		
+	}
+
+	
+	@SuppressWarnings("unchecked")
+	public List<Article> getLastArticles(){
+		
+		session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = "SELECT a FROM Article a ORDER BY a.code DESC";
+		List<Article> results = (List<Article>)session.createQuery(hql).setMaxResults(3).list();
+		
+        session.getTransaction().commit();
+        session.close();
+       
+        
+		return results;
+	}
 }

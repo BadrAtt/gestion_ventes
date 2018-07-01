@@ -7,15 +7,22 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 
 @Entity
-@Table(name = "ARTICLE")
-public class Article {
+@Table(name = "ARTICLE", catalog="gestion_ventes")
+public class Article implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8375855624337776053L;
+
 	@Id @GeneratedValue
 	@Column(name = "ID_ARTICLE")
 	private int code;
@@ -29,8 +36,14 @@ public class Article {
 	@Column(name = "PRIX")
 	private int prix;
 	
-	@OneToMany(mappedBy = "articleCmd")
-	private Collection<Commande> commandes = new ArrayList<Commande>();// un produit peut etre le sujet de plusieurs commandes
+	@OneToMany(mappedBy = "articleCmd", cascade = CascadeType.ALL)
+	private Collection<Commande> commandes = new ArrayList<Commande>();// un article peut etre le sujet de plusieurs commandes
+	
+	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+	private Collection<Achat> achats = new ArrayList<Achat>();//
+	
+	@OneToMany(mappedBy = "article", cascade = CascadeType.ALL)
+	private Collection<Inventaire> inventaires; // un article peut etre le sujet de plusieurs inventaires
 	
 	@Transient
 	private boolean editable;

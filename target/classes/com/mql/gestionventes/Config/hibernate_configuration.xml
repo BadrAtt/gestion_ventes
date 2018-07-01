@@ -23,6 +23,8 @@
       <mapping class="com.mql.gestionventes.Entity.Client" />
       <mapping class="com.mql.gestionventes.Entity.Commande" />
       <mapping class="com.mql.gestionventes.Entity.Utilisateur"/>
+      <mapping class="com.mql.gestionventes.Entity.Inventaire"/>
+      <mapping class="com.mql.gestionventes.Entity.Achat"/>
       
    </session-factory>
 </hibernate-configuration>

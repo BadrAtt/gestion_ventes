@@ -1,8 +1,10 @@
 package com.mql.gestionventes.Entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +14,13 @@ import javax.persistence.Table;
 import javax.persistence.Transient;
 
 @Entity
-@Table(name = "CLIENT")
-public class Client {
+@Table(name = "CLIENT", catalog="gestion_ventes")
+public class Client implements Serializable {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5990896704470700891L;
 
 	@Id @GeneratedValue
 	@Column(name = "ID_CLIENT")
@@ -31,7 +38,7 @@ public class Client {
 	@Column(name = "ADRESSE")
 	private String adresse;
 	
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private Collection<Commande> commandes = new ArrayList<Commande>();// les commandes d'un client
 	
 	@Transient
